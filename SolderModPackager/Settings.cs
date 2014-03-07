@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SolderModPackager
 {
-    class Program
+    public static class Settings
     {
-        static void Main(string[] args)
-        {
-        }
+        public const String StorageLocation = @"D:\Users\Thomas Pakh\Desktop\Storage";
     }
 }
