@@ -1,43 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace SolderModPackager
 {
     class ModFolder
     {
-        private String name;
-        private String folderPath;
+        private string name;
+        private string folderPath;
 
-        public ModFolder(String name)
+        public ModFolder(string name)
         {
             this.name = name;
-            this.folderPath = FileSystemUtils.combine(FileSystemUtils.packagedDir, name);
+            this.folderPath = Path.Combine(FileSystemUtils.packagedDir, name);
         }
 
         public ModFile[] getContents()
         {
-            String[] modStringFiles = Directory.GetFiles(this.folderPath);
+            string[] modStringFiles = Directory.GetFiles(this.folderPath);
             ModFile[] modFiles = new ModFile[modStringFiles.Length];
 
             for (int i = 0; i < modStringFiles.Length; i++)
             {
-                FileInfo modFileInfo = new FileInfo(modStringFiles[i]);
-                DirectoryInfo modFolderInfo = new DirectoryInfo(this.folderPath);
-                modFiles[i] = new ModFile(modFolderInfo.Name, modFileInfo.Name.Replace(modFolderInfo.Name, String.Empty));
+                string modFileName = new FileInfo(modStringFiles[i]).Name.ToLower();
+                string modFolderName = new DirectoryInfo(this.folderPath).Name.ToLower();
+                modFiles[i] = new ModFile(modFolderName, modFileName.Replace(modFolderName, string.Empty));
             }
             return modFiles;
         }
 
-        public String getFolderPath()
+        public string getFolderPath()
         {
             return this.folderPath;
         }
 
-        public String ToString()
+        public override string ToString()
         {
             return this.name;
         }

@@ -8,6 +8,6 @@ namespace SolderModPackager
 {
     public static class Settings
     {
-        public const String StorageLocation = @"D:\Users\Thomas Pakh\Desktop\Storage";
+        public const string StorageLocation = @"D:\Users\Thomas Pakh\Desktop\Storage";
     }
 }
